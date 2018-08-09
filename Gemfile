@@ -10,11 +10,15 @@ gem 'require_all'
 gem 'thin'
 gem 'shotgun'
 gem 'bcrypt'
-gem 'pg'
 gem "tux"
+
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
   gem 'pry'
+  gem 'sqlite3'
 end
 
 group :test do
