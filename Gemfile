@@ -9,16 +9,12 @@ gem 'rake'
 gem 'require_all'
 gem 'thin'
 gem 'shotgun'
-gem 'pry'
 gem 'bcrypt'
+gem 'pg'
+gem "tux"
 
-group :development do
- gem 'sqlite3'
- gem "tux"
-end
-
-group :production do
- gem 'pg'
+group :development, :test do
+  gem 'pry'
 end
 
 group :test do
