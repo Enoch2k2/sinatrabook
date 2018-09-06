@@ -91,3 +91,10 @@ Navigate to your project and type `heroku apps` and find your app name.
 
 then type `heroku git:remote <your app name here>` in order to set the heroku remote so we can start using heroku git commands.
 
+then type `heroku pg:reset DATABASE` it will ask you to confirm with the name of your app, type in the name of your app and hit enter. This will create your database.
+
+navigate back to heroku and click on the `more` button and select the console option.
+
+Type in `rake db:migrate`
+
+Congratulations you have configured heroku and deployed your sinatra app!
