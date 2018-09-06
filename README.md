@@ -130,6 +130,7 @@ It's a workaround an initializer issue that shotgun uses.
 
 ### useful heroku commands in the terminal
 - `heroku apps` - lists all of your heroku apps by it's name
-- `heroku git:remote <app name>` - connects your app to heroku `git push heroku master - pushes your changes to heroku and re-deploys
+- `heroku git:remote <app name>` - connects your app to heroku
+- `git push heroku master` - pushes your changes to heroku and re-deploys
 - `heroku run <bash command>` - will run heroku console to execute a bash command
 - `heroku pg:reset DATABASE` - will create your database (run this before you do your first migration)
