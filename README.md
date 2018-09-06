@@ -50,7 +50,6 @@ end
 ```
 
 # Config
-
 Go to your config folder and create `database.yml`. We will setup our postgres database here.
 ```
 development:
@@ -64,6 +63,22 @@ production:
   pool: 5
   host: <%= ENV['DATABASE_HOST'] %>
   database: production
+```
+
+in the environment.rb file remove:
+```
+ActiveRecord::Base.establish_connection(
+  :adapter => "sqlite3",
+  :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
+)
+```
+
+# Config.ru
+Make sure to remove this line of code as well:
+```
+if ActiveRecord::Migrator.needs_migration?
+  raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
+end
 ```
 
 # Running Postgres
@@ -86,6 +101,11 @@ At the bottom where it says Manual Deploy. Click on `Deploy Branch`
 
 Once it says `Your app was successfully deployed.`. Congratulations, your half way there!
 
+# Heroku CLI
+Navigate to https://devcenter.heroku.com/categories/command-line and install the heroku cli so we can use heroku in the terminal.
+
+Type in the terminal `heroku login` and enter your heroku login details to log in the terminal.
+
 # Migrating your database in Heroku
 Navigate to your project and type `heroku apps` and find your app name.
 
@@ -98,3 +118,19 @@ navigate back to heroku and click on the `more` button and select the console op
 Type in `rake db:migrate`
 
 Congratulations you have configured heroku and deployed your sinatra app!
+
+# helpful tips
+
+### High Sierra
+If you are having internal server issues and your OS is High Sierra, type in the terminal:
+```
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+```
+It's a workaround an initializer issue that shotgun uses.
+
+### useful heroku commands in the terminal
+`heroku apps` - lists all of your heroku apps by it's name
+`heroku git:remote <app name>` - connects your app to heroku
+`git push heroku master - pushes your changes to heroku and re-deploys
+`heroku run <bash command>` - will run heroku console to execute a bash command
+`heroku pg:reset DATABASE` - will create your database (run this before you do your first migration)
