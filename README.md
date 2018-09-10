@@ -33,6 +33,19 @@ gem "sinatra-activerecord"
 
 Delete your Gemfile.lock and `bundle install`
 
+If bundle install fails due to the pg gem, it may not be able to find your pg_config file. Either 
+- Add the PostgreSQL bin file to your path, via the instructions in their [documentation](https://postgresapp.com/documentation/install.html), (they make it really easy, it's one copy-and-paste bash command) OR
+- Update path manually via your .profile file, OR
+- Install the gem manually before you bundle install, specifying the pg_config path: 
+```
+gem install pg -- --with-pg-config=<PATH_TO_POSTGRE_PG_CONFIG_FILE>
+```
+For example:
+```
+gem install pg -- --with-pg-config=/Library/PostgreSQL/9.4/bin/pg_config
+```
+
+
 # DB
 
 Go to your db folder and delete `development.sqlite`, `test.sqlite`, and `schema.rb` if those files exists. Make sure you only have a `migrate` folder (you can keep your migration files). If you have a `seeds.rb` file, that is totally fine, you can keep that as well.
